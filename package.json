@@ -1,0 +1,20 @@
+{
+  "name": "smartfeederapp-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "babel": "babel-node app.js",
+    "babel-debug": "nodemon --exec babel-node app.js --inspect",
+    "build": "webpack --progress --colors"
+  },
+  "author": "Lorena Meyas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cloudant": "^1.10.0-NOTICE",
+    "express": "^4.17.0",
+    "nodemon": "^1.19.0",
+    "webpack": "^4.32.2"
+  }
+}
