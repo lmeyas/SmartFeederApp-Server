@@ -4,17 +4,26 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "babel": "babel-node app.js",
-    "babel-debug": "nodemon --exec babel-node app.js --inspect",
+    "babel": "babel-node config/es6.config.js",
+    "babel-debug": "nodemon --exec babel-node config/es6.config.js --inspect",
     "build": "webpack --progress --colors"
   },
   "author": "Lorena Meyas",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.23.0",
     "body-parser": "^1.19.0",
     "cloudant": "^1.10.0-NOTICE",
     "express": "^4.17.0",
     "nodemon": "^1.19.0",
     "webpack": "^4.32.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }

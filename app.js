@@ -11,14 +11,14 @@ const port = process.env.PORT || 8081;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(session({
-  resave: 'true',
-  saveUninitialized: 'true',
-  secret: 'c88ad32c3918a7a797f0dcc5d36c0855',
-  cookie: {
-    maxAge: 60 * 60 * 1000
-  }
-}));
+// app.use(session({
+//   resave: 'true',
+//   saveUninitialized: 'true',
+//   secret: 'c88ad32c3918a7a797f0dcc5d36c0855',
+//   cookie: {
+//     maxAge: 60 * 60 * 1000
+//   }
+// }));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
