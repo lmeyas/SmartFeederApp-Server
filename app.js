@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import routes from './routes';
 
 const app = express();
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,3 +31,4 @@ app.use((req, res, next) => {
 
 routes(app, express);
 
+app.listen(port, () => console.log(`Server started on ${port}`));

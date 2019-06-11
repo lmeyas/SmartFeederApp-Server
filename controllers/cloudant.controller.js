@@ -52,7 +52,7 @@ export default class dbController {
 		});
   	}
 	  
-	addDevice(user, mealsInformations){
+	addDevice(mealsInformations, user){
 		return new Promise((resolve, reject) => {
 			var doc = {
 				doc_type: "device",

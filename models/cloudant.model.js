@@ -1,10 +1,10 @@
 export default class pageModel {
 	
-	static retrieveAllInformations(userName){
+	static retrieveAllInformations(userEmail){
 		const query = {
 			"selector": {
 				 "creation_information": {
-						"by": userName
+						"by": userEmail
 				 }
 			},
 			"fields": []
@@ -13,11 +13,11 @@ export default class pageModel {
 	 return query;
 	};
 
-	static retrieveDeviceByUser(userName){
+	static retrieveDeviceByUser(userEmail){
 		const query = {
 			"selector": {
 				 "creation_information": {
-						"by": userName
+						"by": userEmail
 				 },
 				 "doc_type": "device"
 			},
@@ -27,11 +27,11 @@ export default class pageModel {
 	 return query;
 	};
 
-	static retrievePetByUser(userName){
+	static retrievePetByUser(userEmail){
 		const query = {
 			"selector": {
 				 "creation_information": {
-						"by": userName
+						"by": userEmail
 				 },
 				 "doc_type": "pet"
 			},
@@ -41,11 +41,12 @@ export default class pageModel {
 	 return query;
 	};
 
-	static retrieveUserInformation(userName){
+	static retrieveUserInformation(userEmail, password){
 		const query = {
 			"selector": {
 				 "user_information": {
-						"name": userName
+						"email": userEmail,
+						"password": password
 				 },
 				 "doc_type": "user"
 			},
