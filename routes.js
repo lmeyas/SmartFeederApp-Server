@@ -51,20 +51,20 @@ export default (app, express) => {
     });  
 
     app.post('/api/v1/pet/insert', (req,res)=>{
-        const name = req.body.name;
-        const age = req.body.age;
-        const specie = req.body.specie;
-        const breed = req.body.breed;
-        const weight = req.body.weight;
-        // const userId = req.body.userId;
-        const userId ="Lorena Meyas dos Santos";
+        console.log(req.body);
+        const name = req.body.petInformations.name;
+        const age = req.body.petInformations.age;
+        const specie = req.body.petInformations.specie;
+        const breed = req.body.petInformations.breed;
+        const weight = req.body.petInformations.weight;
+        const userEmail = req.body.userEmail;
         if ( name == undefined || name == '' || 
              age == undefined || age == '' || 
              specie == undefined || specie == '' || 
              breed == undefined || breed == '' || 
              weight == undefined || weight == '')
             res.status(400).json('You are missing an obrigatory field.')
-        db.addPet(name, age, specie, breed, weight, userId).then( data => {
+        db.addPet(name, age, specie, breed, weight, userEmail).then( data => {
             console.log(data);
             res.status(200).json('Pet added with success.')
         }
@@ -78,9 +78,8 @@ export default (app, express) => {
      * This route retrieve pet document by user in your database
      */
     app.post('/api/v1/pet/retrieve', (req,res)=>{
-        // const name = req.body.username;
-        const user = 'Lorena Meyas dos Santos';
-        db.runQuery(cloudantModel.retrievePetByUser(user)).then(data =>{
+        const userEmail = req.body.userEmail;
+        db.runQuery(cloudantModel.retrievePetByUser(userEmail)).then(data =>{
             res.status(200).json(data);
         }).catch(err =>{
             res.status(400).json('Something went wrong.',err);
@@ -92,12 +91,11 @@ export default (app, express) => {
     //VER COMO INSERIR O OBJETO
     app.post('/api/v1/device/insert', (req,res)=>{
         const meals = req.body.mealList;
-        // const name = req.body.username;
-        const userId ="Lorena Meyas dos Santos";
+        const userEmail = req.body.userEmail;
         if (meals.length <= 0){
             res.status(400).json('You are missing an obrigatory field.')
         } else {
-            db.addDevice(meals, userId).then( data => {
+            db.addDevice(meals, userEmail).then( data => {
                 console.log(data);
                 res.status(200).json('Device added to the backlog.')
             }).catch(err=>{
@@ -112,10 +110,9 @@ export default (app, express) => {
      * This route retrieve pet document by user in your database
      */
     app.post('/api/v1/device/retrieve', (req,res)=>{
-        // const name = req.body.username;
-        const user = 'Lorena Meyas dos Santos';
-        db.runQuery(cloudantModel.retrieveDeviceByUser(user)).then(data =>{
-            res.status(200).json(data);
+        const userEmail = req.body.userEmail;
+        db.runQuery(cloudantModel.retrieveDeviceByUser(userEmail)).then(data =>{
+            res.status(200).json(data[0]);
         }).catch(err =>{
             res.status(400).json('Something went wrong.',err);
         });

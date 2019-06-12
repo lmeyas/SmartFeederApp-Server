@@ -21,7 +21,7 @@ export default class pageModel {
 				 },
 				 "doc_type": "device"
 			},
-			"fields": []
+			"fields": ["meal_information"]
 	 };
 
 	 return query;
