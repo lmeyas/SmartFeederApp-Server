@@ -90,6 +90,7 @@ export default (app, express) => {
 
     //VER COMO INSERIR O OBJETO
     app.post('/api/v1/device/insert', (req,res)=>{
+        console.log(req.body);
         const meals = req.body.mealList;
         const userEmail = req.body.userEmail;
         if (meals.length <= 0){
