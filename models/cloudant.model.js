@@ -41,6 +41,20 @@ export default class pageModel {
 	 return query;
 	};
 
+	static retrieveMedicineByUser(userEmail){
+		const query = {
+			"selector": {
+				 "creation_information": {
+						"by": userEmail
+				 },
+				 "doc_type": "medicine"
+			},
+			"fields": []
+	 };
+
+	 return query;
+	};
+
 	static retrieveUserInformation(userEmail, password){
 		const query = {
 			"selector": {

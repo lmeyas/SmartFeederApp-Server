@@ -87,8 +87,6 @@ export default (app, express) => {
     });
 
     
-
-    //VER COMO INSERIR O OBJETO
     app.post('/api/v1/device/insert', (req,res)=>{
         console.log(req.body);
         const meals = req.body.mealList;
@@ -106,13 +104,41 @@ export default (app, express) => {
         }
     });
 
-
      /**
      * This route retrieve pet document by user in your database
      */
     app.post('/api/v1/device/retrieve', (req,res)=>{
         const userEmail = req.body.userEmail;
         db.runQuery(cloudantModel.retrieveDeviceByUser(userEmail)).then(data =>{
+            res.status(200).json(data[0]);
+        }).catch(err =>{
+            res.status(400).json('Something went wrong.',err);
+        });
+    });
+
+    app.post('/api/v1/medicine/insert', (req,res)=>{
+        console.log(req.body);
+        const medicine = req.body.medicineList;
+        const userEmail = req.body.userEmail;
+        if (medicine.length <= 0){
+            res.status(400).json('You are missing an obrigatory field.')
+        } else {
+            db.addMedicine(medicine, userEmail).then( data => {
+                console.log(data);
+                res.status(200).json('Medicine added to the backlog.')
+            }).catch(err=>{
+                console.log(err);
+                res.status(400).json('Something went wrong.', err)
+            })
+        }
+    });
+
+     /**
+     * This route retrieve pet document by user in your database
+     */
+    app.post('/api/v1/medicine/retrieve', (req,res)=>{
+        const userEmail = req.body.userEmail;
+        db.runQuery(cloudantModel.retrieveMedicineByUser(userEmail)).then(data =>{
             res.status(200).json(data[0]);
         }).catch(err =>{
             res.status(400).json('Something went wrong.',err);

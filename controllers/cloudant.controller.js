@@ -119,5 +119,25 @@ export default class dbController {
 				resolve(body);
 			});
 		});
+	  };	
+
+	  addMedicine(medicine, user){
+		return new Promise((resolve, reject) => {
+			var doc = {
+				doc_type: "medicine",
+				medicine_information: medicine,
+				creation_information: {
+					by: user,
+					date: sharedFunction.retrieve_timestamp()
+				}
+			};
+			this.db.insert(doc, function(err, body) {
+				if (err) {
+					console.log(err);
+					reject(errorLog(err,user));
+				}
+				resolve(body);
+			});
+		});
   	};	  
 }
