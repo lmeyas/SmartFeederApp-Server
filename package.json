@@ -16,6 +16,7 @@
     "body-parser": "^1.19.0",
     "cloudant": "^1.10.0-NOTICE",
     "express": "^4.17.0",
+    "node-red": "^0.20.5",
     "nodemon": "^1.19.0",
     "webpack": "^4.32.2"
   },

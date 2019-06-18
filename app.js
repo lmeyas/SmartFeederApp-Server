@@ -1,6 +1,7 @@
 /* Node's libs */
 import express from 'express'; 
 import bodyParser from 'body-parser';
+import RED from 'node-red';
 
 /* App's files */
 import routes from './routes';
@@ -31,4 +32,31 @@ app.use((req, res, next) => {
 
 routes(app, express);
 
+/**
+ *   NODE RED 
+ */
+// // Create the settings object - see default settings.js file for other options
+// var settings = {
+//   httpAdminRoot:"/red",
+//   httpNodeRoot: "/api",
+//   userDir:"/home/nol/.nodered/",
+//   functionGlobalContext: { }    // enables global context
+// };
+
+// // Initialise the runtime with a server and settings
+// RED.init(server,settings);
+
+// // Serve the editor UI from /red
+// app.use(settings.httpAdminRoot,RED.httpAdmin);
+
+// // Serve the http nodes UI from /api
+// app.use(settings.httpNodeRoot,RED.httpNode);
+
+/**
+ * até aqui 
+ */
+
 app.listen(port, () => console.log(`Server started on ${port}`));
+
+// Start the runtime
+// RED.start();
